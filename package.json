@@ -2,7 +2,7 @@
   "name": "context-rag",
   "version": "1.0.0",
   "private": true,
-  "description": "Small retrieval-augmented generation demo: chunk, embed, retrieve inside a tenant, answer only from that context.",
+  "description": "Retrieval-augmented generation demo to clone and run locally. Tests need no API key; the live demo uses your own key.",
   "type": "module",
   "engines": {
     "node": ">=20"

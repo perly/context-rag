@@ -13,22 +13,33 @@ The store is in memory on purpose. Two documents are enough to show the behavior
 5. Keep the top matches above a similarity cutoff. If none qualify, return a refusal and do not call the chat model.
 6. Otherwise ask the model to answer from those chunks, with the chunks marked as data rather than instructions.
 
-## Setup
+## Run it locally
+
+Clone the repository and run it on your machine. You need Node.js 20 or newer.
 
 ```bash
+git clone https://github.com/perly/context-rag.git
+cd context-rag
 npm install
+npm test
+```
+
+`npm test` checks chunking, tenant isolation, embedding reuse, and the refusal path. It uses hand-built vectors, so it needs no API key.
+
+To see the live answers, copy the example env file and set your own key:
+
+```bash
 cp .env.example .env
 ```
 
-Put `OPENAI_API_KEY` in `.env`. The file is gitignored.
+`.env` stays on your machine. Then:
 
 ```bash
-npm test
 npm start
 npm run eval
 ```
 
-`npm test` does not call the API. `npm start` prints the ingest counts and four questions. `npm run eval` runs those questions and exits with an error if retrieval or the refusal check fails.
+`npm start` prints the ingest counts and four questions. `npm run eval` runs those questions and exits with an error if retrieval or the refusal check fails.
 
 ## What the demo shows
 
@@ -78,4 +89,4 @@ These are the next steps, not hidden features:
 
 ## Security
 
-The API key comes from the environment. Do not paste it into source. If a key was ever saved in a file or a chat, revoke it in the provider dashboard and create a new one before publishing the repository.
+Each person sets their own `OPENAI_API_KEY` in a local `.env` file. That file is gitignored. Leave the key out of source, commits, and chat. If a key was ever saved in a file that got shared, revoke it in the provider dashboard and create a new one.

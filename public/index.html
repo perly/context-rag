@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Context RAG</title>
+    <link rel="stylesheet" href="/chat.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <div>
+          <h1>Context RAG</h1>
+          <p>Answers come from the sample documents loaded in memory for the selected tenant.</p>
+        </div>
+        <label>
+          Tenant
+          <select id="tenant" name="tenant"></select>
+        </label>
+      </header>
+
+      <ol id="thread" aria-live="polite">
+        <li class="empty" id="empty">
+          <p>
+            Guesty has the Tel Aviv office note. Melio has the company history.
+            A question outside those documents is refused, and the model is not called.
+          </p>
+          <div class="suggestions">
+            <button type="button" data-question="How do I get online at the Tel Aviv office?">
+              How do I get online at the Tel Aviv office?
+            </button>
+            <button type="button" data-question="What is the capital of France?">
+              What is the capital of France?
+            </button>
+          </div>
+        </li>
+      </ol>
+
+      <form id="composer">
+        <label class="sr-only" for="question">Question</label>
+        <textarea id="question" name="question" rows="2" placeholder="Ask a question"></textarea>
+        <button type="submit" disabled>Send</button>
+        <p id="form-error" class="form-error" hidden></p>
+      </form>
+    </main>
+    <script src="/chat.js"></script>
+  </body>
+</html>

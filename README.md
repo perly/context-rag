@@ -41,6 +41,14 @@ npm run eval
 
 `npm start` prints the ingest counts and four questions. `npm run eval` runs those questions and exits with an error if retrieval or the refusal check fails.
 
+The chat page asks that same sample corpus. The documents stay in memory for the server process:
+
+```bash
+npm run serve
+```
+
+Open http://127.0.0.1:3000. Choose a tenant and ask a question. Each answer lists the retrieved chunks, their similarity, and whether the model was called. `npm start` and `npm run eval` still run the scripted questions in the terminal.
+
 ## What the demo shows
 
 The corpus has an office note for tenant `guesty` and a company note for tenant `melio`.
@@ -60,6 +68,8 @@ After the first ingest, the demo writes the Guesty document again. The log shoul
 - `src/rag.ts` retrieves, builds the prompt, and skips the model when retrieval misses.
 - `src/corpus.ts` is the sample documents and questions.
 - `src/eval.ts` is the live check against the API.
+- `src/server.ts` serves the chat page and `POST /api/chat`.
+- `public/` is the chat page.
 
 ## Decisions worth walking through
 
